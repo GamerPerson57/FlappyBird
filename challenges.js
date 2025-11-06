@@ -31,10 +31,20 @@ function raiseScore() {
 setInterval(raiseScore, 1000);
 
 function detectClick() {
-    console.log("CLicked!")
+    console.log("Clicked!")
+    bird.flap();
+
 }
 
+function detectKey() {
+    console.log("Key pressed!");
+    bird.flap();
+}
+
+
+
 canvas.addEventListener("click", detectClick);
+window.addEventListener("keypress", detectKey);
 
 let testPipe = new PipeObstacle(canvas, pencil);
 testPipe.draw();

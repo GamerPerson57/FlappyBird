@@ -26,14 +26,23 @@ export class Bird {
         ); // x, y, w, h
     }
 
+    flap() {
+        console.log("Flapped!")
+        this.ySpeed = -15;
+    }
+
     gravity() {
         this.y += this.ySpeed
-        this.ySpeed *= 1.2;
+        this.ySpeed += 2;
 
         if(this.ySpeed > this.maximumYSpeed) {
             this.ySpeed = this.maximumYSpeed;
         }
 
+    }
+
+    isHitByPipe(pipeObstacle) {
+        
     }
 
 }
