@@ -1,15 +1,21 @@
 import { PipeObstacle } from "./pipeObstacle.js";
+import { Bird } from "./bird.js";
 
 let canvas = document.getElementById("myCanvas");
 let pencil = canvas.getContext("2d"); // This gives you the drawing context, like a pencil
 
 
 function gameLoop() {
+    
     //erase the canvas
     pencil.clearRect(0, 0, canvas.width, canvas.height);
 
+   
     testPipe.move();
     testPipe.draw();
+
+    bird.gravity();
+    bird.draw();
 }
 
 setInterval(gameLoop, 50);
@@ -32,3 +38,5 @@ canvas.addEventListener("click", detectClick);
 
 let testPipe = new PipeObstacle(canvas, pencil);
 testPipe.draw();
+
+let bird = new Bird(canvas, pencil);

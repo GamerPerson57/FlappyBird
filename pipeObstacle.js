@@ -1,8 +1,8 @@
 // draws pipe obstacle
 export class PipeObstacle {
-    x = 500;
+    x = 700;
     y = 250;
-    height = 500
+    height;
     width = 100
     canvas;
     pencil;
@@ -16,8 +16,10 @@ export class PipeObstacle {
     constructor (canvas, pencil) {
         this.pencil = pencil;
         this.canvas = canvas;
+        
+        this.height = canvas.height;
     }
-
+        
     draw() {
 
         //top pipe
@@ -31,10 +33,11 @@ export class PipeObstacle {
 
     move() {
         this.x -= this.speed;
-
+        
         // pipe recycle
         if (this.x < -this.width) {
             this.x = this.canvas.width
+            this.y = Math.random() * this.canvas.height 
         }
     }
 }
