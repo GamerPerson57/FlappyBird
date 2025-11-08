@@ -26,11 +26,26 @@ export class PipeObstacle {
 
     draw() {
 
-        this.topPipeTopLeft = {
+        this.topPipeTopLeft = { 
+            x : this.x,
+            y : this.y - this.height
+        }
+
+        this.topPipeBottomRight = { 
             x : this.x + this.width,
             y : this.y - this.height + this.height
-            
         }
+
+        this.bottomPipeTopLeft = {
+            x : this.x,
+            y : this.y + this.gap
+        }
+
+        this.bottomPipeBottomRight = {
+            x : this.x + this.width,
+            y : this.y + this.gap + this.height
+        }
+
 
         //top pipe
         this.pencil.fillStyle = 'green'; // Set the fill color
@@ -59,8 +74,6 @@ export class PipeObstacle {
             this.x = this.canvas.width;
             this.y = Math.random() * this.canvas.height;
         }
-
-
 
 
 

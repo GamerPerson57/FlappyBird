@@ -16,6 +16,11 @@ function gameLoop() {
 
     bird.gravity();
     bird.draw();
+
+    let wasHit = bird.isHitByPipe(testPipe);
+    if(wasHit) {
+        console.log("you're dead, comrade!");
+    }
 }
 
 setInterval(gameLoop, 50);
@@ -31,20 +36,16 @@ function raiseScore() {
 setInterval(raiseScore, 1000);
 
 function detectClick() {
-    console.log("Clicked!")
     bird.flap();
-
 }
 
 function detectKey() {
-    console.log("Key pressed!");
     bird.flap();
+
 }
 
-
-
 canvas.addEventListener("click", detectClick);
-window.addEventListener("keypress", detectKey);
+document.addEventListener("keypress", detectKey)
 
 let testPipe = new PipeObstacle(canvas, pencil);
 testPipe.draw();

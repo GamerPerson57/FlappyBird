@@ -14,7 +14,7 @@ export class Bird {
         this.canvas = canvas;
         this.pencil = pencil;
     }
-
+ 
     draw() {
         //top pipe
         this.pencil.fillStyle = 'black'; // Set the fill color
@@ -42,7 +42,30 @@ export class Bird {
     }
 
     isHitByPipe(pipeObstacle) {
+
         
+
+        //this detects collisions for the top pipe
+        let hitTopPipe = (
+        this.x > pipeObstacle.topPipeTopLeft.x && 
+        this.y > pipeObstacle.topPipeTopLeft.y && 
+        this.x < pipeObstacle.topPipeBottomRight.x && 
+        this.y < pipeObstacle.topPipeBottomRight.y
+        
+        );
+
+
+        //use the logic above to detect for the bottom pipe here:
+        let hitBottomPipe = (
+            this.x > pipeObstacle.bottomPipeTopLeft.x && 
+            this.y > pipeObstacle.bottomPipeTopLeft.y &&
+            this.x < pipeObstacle.bottomPipeBottomRight.x &&
+            this.y < pipeObstacle.bottomPipeBottomRight.y
+
+        );
+
+        return hitTopPipe || hitBottomPipe;
     }
+
 
 }
