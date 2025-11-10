@@ -1,10 +1,19 @@
 <html>
     <head>
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <p id="scoreDisplay">Score</p>
+        <p id="scoreDisplay">Start!</p>
+
+        <!-- adds restart button, button is hidden until player dies -->
         <canvas id="myCanvas" height="600" width = "600"></canvas>
+        <br>
+        <br>
+        <br>
+        <button id="restartButton" style="display:none;">Restart</button>
+        <img id = "birb" src = "sprites/birb.png" hidden>
+        <img id = "top_pipe" src = "sprites/top_pipe.png" hidden>
+        <img id = "bottom_pipe" src = "sprites/bottom_pipe.png" hidden>
         <script type="module" src="bird.js"></script>
         <script type="module" src="pipeObstacle.js"></script>
         <script type="module" src="challenges.js"></script>

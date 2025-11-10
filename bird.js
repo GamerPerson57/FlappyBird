@@ -1,9 +1,9 @@
 export class Bird {
     
-    x = 50;
-    y = 50;
-    width = 50;
-    height = 50;
+    x = 75;
+    y = 75;
+    width = 75;
+    height = 75;
     canvas;
     pencil;
 
@@ -13,12 +13,15 @@ export class Bird {
     constructor(canvas, pencil) {
         this.canvas = canvas;
         this.pencil = pencil;
+
+        this.sprite = new Image()
+        this.sprite.src = "./sprites/birb.png";
     }
  
     draw() {
         //top pipe
-        this.pencil.fillStyle = 'black'; // Set the fill color
-        this.pencil.fillRect(
+        this.pencil.drawImage(
+            this.sprite,
             this.x, 
             this.y, 
             this.width, 
@@ -41,31 +44,24 @@ export class Bird {
 
     }
 
-    isHitByPipe(pipeObstacle) {
-
-        
-
+     isHitByPipe(pipeObstacle) {
         //this detects collisions for the top pipe
-        let hitTopPipe = (
-        this.x > pipeObstacle.topPipeTopLeft.x && 
-        this.y > pipeObstacle.topPipeTopLeft.y && 
-        this.x < pipeObstacle.topPipeBottomRight.x && 
-        this.y < pipeObstacle.topPipeBottomRight.y
+        let isFarEnoughRightTop = this.x > pipeObstacle.topPipeTopLeft.x;
+        let isLowEnoughTop = this.y > pipeObstacle.topPipeTopLeft.y;
+        let isFarEnoughLeftTop = this.x < pipeObstacle.topPipeBottomRight.x;
+        let isHighEnoughTop = this.y < pipeObstacle.topPipeBottomRight.y;
+
+        let hitTopPipe = isFarEnoughRightTop && isLowEnoughTop && isFarEnoughLeftTop && isHighEnoughTop;
         
-        );
-
-
         //use the logic above to detect for the bottom pipe here:
-        let hitBottomPipe = (
-            this.x > pipeObstacle.bottomPipeTopLeft.x && 
-            this.y > pipeObstacle.bottomPipeTopLeft.y &&
-            this.x < pipeObstacle.bottomPipeBottomRight.x &&
-            this.y < pipeObstacle.bottomPipeBottomRight.y
+        let isFarEnoughRightBottom = this.x > pipeObstacle.bottomPipeTopLeft.x;
+        let isLowEnoughBottom = this.y > pipeObstacle.bottomPipeTopLeft.y;
+        let isFarEnoughLeftBottom = this.x < pipeObstacle.bottomPipeBottomRight.x;
+        let isHighEnoughBottom = this.y < pipeObstacle.bottomPipeBottomRight.y;
 
-        );
+        let hitBottomPipe = isFarEnoughRightBottom && isLowEnoughBottom && isFarEnoughLeftBottom && isHighEnoughBottom;
 
-        return hitTopPipe || hitBottomPipe;
-    }
-
+        return hitTopPipe || hitBottomPipe
+     }
 
 }

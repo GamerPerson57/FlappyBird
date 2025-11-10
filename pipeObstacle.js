@@ -5,7 +5,7 @@ export class PipeObstacle {
     x = 300;
     y = 100;
     height; //height will be dynamic
-    width = 100;
+    width = 150;
     canvas;
     pencil;
     speed = 10;
@@ -20,6 +20,12 @@ export class PipeObstacle {
     constructor(canvas, pencil) {
         this.pencil = pencil;
         this.canvas = canvas;
+
+        this.topPipe = new Image()
+        this.topPipe.src = "./sprites/top_pipe.png";
+        
+        this.bottomPipe = new Image()
+        this.bottomPipe.src = "./sprites/bottom_pipe.png";
 
         this.height = canvas.height;
     }
@@ -48,17 +54,21 @@ export class PipeObstacle {
 
 
         //top pipe
-        this.pencil.fillStyle = 'green'; // Set the fill color
-        this.pencil.fillRect(
+
+        this.pencil.drawImage(
+            this.topPipe,
             this.x, 
             this.y - this.height, 
             this.width, 
             this.height
         ); // x, y, w, h
 
+
+
         //bottom pipe
-        this.pencil.fillStyle = 'green'; // Set the fill color
-        this.pencil.fillRect(
+
+        this.pencil.drawImage(
+            this.bottomPipe,
             this.x, 
             this.y + this.gap, 
             this.width, 
@@ -72,7 +82,10 @@ export class PipeObstacle {
         //check if we need to recycle
         if(this.x < -this.width) {
             this.x = this.canvas.width;
-            this.y = Math.random() * this.canvas.height;
+
+            //fixed pipes to stay in canvas
+            let maxY = this.canvas.height - this.gap;
+            this.y = Math.random() * maxY;
         }
 
 
