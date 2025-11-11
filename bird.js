@@ -64,4 +64,13 @@ export class Bird {
         return hitTopPipe || hitBottomPipe
      }
 
+     offScreen() {
+        if (this.y + this.height < 0 || this.y > this.canvas.height) {
+            console.log("Out of bounds!")
+            return true
+        }
+        return false
+     }
+
+
 }

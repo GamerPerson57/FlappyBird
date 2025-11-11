@@ -33,6 +33,7 @@ function gameLoop() {
     
     //erase the canvas
     pencil.clearRect(0, 0, canvas.width, canvas.height);
+    pencil.drawImage(background, 0, 0, canvas.width, canvas.height);
 
    
     testPipe.move();
@@ -41,8 +42,9 @@ function gameLoop() {
     bird.gravity();
     bird.draw();
 
+    // detects if bird hits pipe or if the bird goes off screen
     let wasHit = bird.isHitByPipe(testPipe);
-    if(wasHit) {
+    if(wasHit || bird.offScreen()) {
         console.log("you're dead, comrade!");
         clearInterval(flappyBird);
         clearInterval(risingScore);
